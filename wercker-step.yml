@@ -104,15 +104,6 @@ properties:
     type: string
     required: false
 
-  influxdb-host:
-    type: string
-    required: false
-  influxdb-user:
-    type: string
-    required: false
-  influxdb-password:
-    type: string
-    required: false
-  influxdb-db:
+  influxdb-dsn:
     type: string
     required: false
