@@ -1,4 +1,4 @@
-box: debian:stable-slim
+box: wercker/default
 build:
     steps:
         - shellcheck
