@@ -1,13 +1,16 @@
-box: wercker/default
+box: debian:stable-slim
 build:
     steps:
         - shellcheck
 
+        - install-packages:
+            packages: curl
+
         - script:
             name: config
             code: |
-                export KUBERNETES_VERSION="1.6.2"
-                export KUBERNETES_SHA256="f8ef17b8b4bb8f6974fa2b3faa992af3c39ad318c30bdfe1efab957361d8bdfe"
+                export KUBERNETES_VERSION="1.10.5"
+                export KUBERNETES_SHA256="da9d557989a0b9671a610f21642052febb8f70c3cf144c98a8a4f7ecab6bafe2"
                 echo "Installing version $KUBERNETES_VERSION of kubernetes"
 
         - script:
@@ -20,4 +23,14 @@ build:
 
         - script:
             name: prepare output
+<<<<<<< HEAD
             code: cp "kubernetes/client/bin/kubectl" "LICENSE" "README.md" "run.sh" "register-deploy.sh" "wercker.yml" "wercker-step.yml" "$WERCKER_OUTPUT_DIR"
+=======
+            code: cp "kubernetes/client/bin/kubectl" "LICENSE" "README.md" "run.sh" "wercker.yml" "step.yml" "$WERCKER_OUTPUT_DIR"
+
+publish:
+  steps:
+    - internal/publish-step:
+        owner: wercker
+
+>>>>>>> upstream/master
