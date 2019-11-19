@@ -64,6 +64,10 @@ The MIT License (MIT)
 
 # Changelog
 
+## 3.10.0
+
+- Update to kubectl to version `1.14.8`
+
 ## 3.9.0
 
 - Update to kubectl to version `1.10.5`
