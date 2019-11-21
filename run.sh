@@ -3,8 +3,6 @@
 kubectl="$WERCKER_STEP_ROOT/kubectl"
 
 main() {
-  display_version
-
   if [ -z "$WERCKER_KUBECTL_COMMAND" ]; then
     fail "wercker-kubectl: command argument cannot be empty"
   fi
@@ -162,6 +160,9 @@ main() {
     args="$args --overwrite=\"$WERCKER_KUBECTL_OVERWRITE\""
   fi
 
+  info "Running kubectl version:"
+  eval "$kubectl" "$global_args" "$raw_global_args" version --client
+  echo ""
 
   info "Running kubectl command"
   if [ "$WERCKER_KUBECTL_DEBUG" = "true" ]; then
@@ -170,12 +171,6 @@ main() {
 
   eval "$kubectl" "$global_args" "$raw_global_args" "$cmd" "$args" "$raw_args" | tee -a kubectl.log
   "$WERCKER_STEP_ROOT/register-deploy.sh" kubectl.log
-}
-
-display_version() {
-  info "Running kubectl version:"
-  "$kubectl" version --client
-  echo ""
 }
 
 main;
