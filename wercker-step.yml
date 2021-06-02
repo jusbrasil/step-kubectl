@@ -1,5 +1,5 @@
 name: kubectl
-version: 3.11.0
+version: 3.12.1
 description: Step to run kubectl
 keywords:
   - kubernetes
@@ -90,6 +90,18 @@ properties:
     type: string
     required: false
   overwrite:
+    type: string
+    required: false
+  gcloud-key-json:
+    type: string
+    required: false
+  gke-cluster-name:
+    type: string
+    required: false
+  gke-cluster-zone:
+    type: string
+    required: false
+  gke-cluster-project:
     type: string
     required: false
 

@@ -1,29 +1,13 @@
 box: wercker/default
+
 build:
     steps:
         - shellcheck
 
-        - install-packages:
-            packages: curl
-
-        - script:
-            name: config
-            code: |
-                export KUBERNETES_VERSION="1.15.12"
-                export KUBERNETES_SHA512="316dcb768c0963259f685a4c433150dca3191379a8f2789f39ff50c47b995f702f6f9de89f54a1a260e9ca9fa19dd020ccf7a0a8435e31fe3a7bc5f81b23a643"
-                echo "Installing version $KUBERNETES_VERSION of kubernetes"
-
-        - script:
-            name: fetch kubernetes archive
-            code: |
-                curl -L https://dl.k8s.io/v${KUBERNETES_VERSION}/kubernetes-client-linux-amd64.tar.gz > kubernetes-client-linux-amd64.tar.gz
-                sha512sum kubernetes-client-linux-amd64.tar.gz | grep -q "$KUBERNETES_SHA512"
-                tar xvzf kubernetes-client-linux-amd64.tar.gz
-                kubernetes/client/bin/kubectl version --client
-
         - script:
             name: prepare output
-            code: cp "kubernetes/client/bin/kubectl" "LICENSE" "README.md" "run.sh" "wercker.yml" "step.yml" "wercker-step.yml" "register-deploy.sh" "$WERCKER_OUTPUT_DIR"
+            code: |
+              cp "${WERCKER_ROOT}/LICENSE" "${WERCKER_ROOT}/README.md" "${WERCKER_ROOT}/run.sh" "${WERCKER_ROOT}/wercker.yml" "${WERCKER_ROOT}/step.yml" "${WERCKER_ROOT}/wercker-step.yml" "${WERCKER_OUTPUT_DIR}"
 
 publish:
   steps:
