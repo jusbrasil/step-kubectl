@@ -1,8 +1,13 @@
-box: wercker/default
+box:
+  id: debian
+  tag: stable-slim
 
 build:
     steps:
         - shellcheck
+
+        - install-packages:
+            packages: curl
 
         - script:
             name: prepare output
