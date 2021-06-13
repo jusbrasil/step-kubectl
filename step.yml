@@ -1,5 +1,5 @@
 name: kubectl
-version: 3.11.0
+version: 3.12.1
 summary: Step to run kubectl
 tags:
   - kubernetes
@@ -92,6 +92,18 @@ properties:
 - name: overwrite
   type: string
   required: false
+- name: gcloud-key-json
+  type: string
+  required: false
+- name: gke-cluster-name
+  type: string
+  required: false
+- name: gke-cluster-zone
+  type: string
+  required: false
+- name: gke-cluster-project
+  type: string
+  required: false
 
 - name: debug
   type: string
@@ -101,5 +113,9 @@ properties:
   type: string
   required: false
 - name: raw-args
+  type: string
+  required: false
+
+- name: influxdb-dsn
   type: string
   required: false
